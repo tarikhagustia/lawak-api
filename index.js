@@ -11,11 +11,16 @@ app.post('/', (req, res) => {
     const jokes = JSON.parse(rawdata);
 
     const joke = jokes[Math.floor(Math.random() * jokes.length)]
-
-    res.send({
-        type: 'chat',
-        body: joke
-    })
+    if(req.body.message == '!joke')
+    {
+        res.send({
+            type: 'chat',
+            body: joke
+        })
+    }else{
+        res.send({})
+    }
+   
 })
 
 app.listen(port, () => console.log(`app listening on port ${port}!`))
